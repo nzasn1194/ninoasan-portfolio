@@ -111,7 +111,9 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
           onClick={() => router.push("/")}
           className="font-medium cursor-pointer mob:p-2 laptop:p-0"
         >
-          <span className="bg-gradient-to-r from-pink-500 to-sky-500 bg-clip-text text-transparent">{name}</span>.
+          <span className="bg-gradient-to-r fr          cd "c:\Users\Ninz\Downloads\ninoasan-portfolio\react-portfolio-template-main - Copy\react-portfolio-template-main"
+          git remote set-url origin git@github.com:nzasn1194/ninoasan-portfolio.git
+          git push -u origin mainom-pink-500 to-sky-500 bg-clip-text text-transparent">{name}</span>.
         </h1>
         {!isBlog ? (
           <div className="flex flex-wrap items-center gap-3">
