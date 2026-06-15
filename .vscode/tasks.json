@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Next: Run Dev Server",
+      "type": "shell",
+      "command": "npm run dev -- --port 8080",
+      "options": {
+        "cwd": "${workspaceFolder}/react-portfolio-template-main - Copy/react-portfolio-template-main"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}
