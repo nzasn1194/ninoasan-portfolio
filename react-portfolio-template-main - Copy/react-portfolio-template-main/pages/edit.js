@@ -117,11 +117,29 @@ const EditPage = () => {
     const files = Array.from(event.target.files || []).slice(0, 3);
     if (!files.length) return;
 
+    // client-side validation: image files only, max 2MB each
+    const MAX_IMAGE_BYTES = 2 * 1024 * 1024; // 2 MB
+    const validFiles = [];
+    for (const file of files) {
+      if (!file.type.startsWith('image/')) {
+        setSaveMessage('Only image files are allowed for project photos.');
+        window.setTimeout(() => setSaveMessage(''), 3000);
+        continue;
+      }
+      if (file.size > MAX_IMAGE_BYTES) {
+        setSaveMessage('Each image must be smaller than 2 MB.');
+        window.setTimeout(() => setSaveMessage(''), 3000);
+        continue;
+      }
+      validFiles.push(file);
+    }
+    if (!validFiles.length) return;
+
     // Try Cloudinary upload first (if configured), otherwise fallback to data URLs
     const cloudConfigured = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME && process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
 
     const results = await Promise.all(
-      files.map(async (file) => {
+      validFiles.map(async (file) => {
         if (cloudConfigured) {
           const url = await uploadToCloudinary(file);
           if (url) return url;
@@ -171,11 +189,39 @@ const EditPage = () => {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    // Validate file types and sizes
+    const MAX_IMAGE_BYTES = 3 * 1024 * 1024; // 3 MB for single images
+    const MAX_PDF_BYTES = 5 * 1024 * 1024; // 5 MB for resume
+    if (key === 'resumePdf') {
+      if (file.type !== 'application/pdf') {
+        setSaveMessage('Resume must be a PDF file.');
+        window.setTimeout(() => setSaveMessage(''), 3000);
+        return;
+      }
+      if (file.size > MAX_PDF_BYTES) {
+        setSaveMessage('Resume PDF must be smaller than 5 MB.');
+        window.setTimeout(() => setSaveMessage(''), 3000);
+        return;
+      }
+    } else if (file.type && !file.type.startsWith('image/')) {
+      setSaveMessage('Only image files are allowed here.');
+      window.setTimeout(() => setSaveMessage(''), 3000);
+      return;
+    } else if (file.size > MAX_IMAGE_BYTES) {
+      setSaveMessage('Image must be smaller than 3 MB.');
+      window.setTimeout(() => setSaveMessage(''), 3000);
+      return;
+    }
+
     const cloudConfigured = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME && process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
 
     let savedUrl = null;
     if (cloudConfigured) {
       savedUrl = await uploadToCloudinary(file);
+      if (!savedUrl) {
+        setSaveMessage('Upload failed — saved locally instead.');
+        window.setTimeout(() => setSaveMessage(''), 3000);
+      }
     }
 
     const dataUrl = savedUrl || (await readFileAsDataUrl(file));
