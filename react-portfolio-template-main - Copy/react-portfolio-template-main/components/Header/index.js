@@ -115,88 +115,88 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
           <span className="bg-gradient-to-r from-pink-500 to-sky-500 bg-clip-text text-transparent">{name}</span>.
         </h1>
         {!isBlog ? (
-          <div className="flex flex-wrap items-center gap-3">
-            <Button
-              onClick={handleWorkScroll}
-              classes="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition hover:bg-white/10"
-            >
-              Project
-            </Button>
-            <Button
-              onClick={handleAboutScroll}
-              classes="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition hover:bg-white/10"
-            >
-              About
-            </Button>
-            {showResume && (
+            <div className="flex flex-wrap items-center gap-2">
               <Button
-                onClick={() => router.push("/resume")}
-                classes="rounded-full bg-cyan-500 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-950 transition hover:bg-cyan-400"
+                onClick={handleWorkScroll}
+                classes="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/10"
               >
-                Resume
+                Project
               </Button>
-            )}
+              <Button
+                onClick={handleAboutScroll}
+                classes="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/10"
+              >
+                About
+              </Button>
+              {showResume && (
+                <Button
+                  onClick={() => router.push("/resume")}
+                  classes="rounded-md bg-cyan-500 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-950 transition hover:bg-cyan-400"
+                >
+                  Resume
+                </Button>
+              )}
 
-            <Button
-              onClick={() => router.push("/edit")}
-              classes="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition hover:bg-white/10"
-            >
-              Edit Data
-            </Button>
-            <button
-              onClick={() => window.open("mailto:hello@chetanverma.com")}
-              className="ml-4 text-sm text-slate-100 hover:underline"
-            >
-              Contact
-            </button>
-          </div>
-        ) : (
-          <div className="flex flex-wrap items-center gap-3">
-            <Button
-              onClick={() => router.push("/")}
-              classes="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition hover:bg-white/10"
-            >
-              Home
-            </Button>
-            {showBlog && (
               <Button
-                onClick={() => router.push("/blog")}
-                classes="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition hover:bg-white/10"
+                onClick={() => router.push("/edit")}
+                classes="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/10"
               >
-                Blog
+                Edit Data
               </Button>
-            )}
-            {showResume && (
               <Button
-                onClick={() => router.push("/resume")}
-                classes="rounded-full bg-cyan-500 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-950 transition hover:bg-cyan-400"
+                onClick={() => window.open("mailto:hello@chetanverma.com")}
+                classes="ml-2 text-xs text-slate-100 hover:underline"
               >
-                Resume
+                Contact
               </Button>
-            )}
+            </div>
+          ) : (
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                onClick={() => router.push("/")}
+                classes="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/10"
+              >
+                Home
+              </Button>
+              {showBlog && (
+                <Button
+                  onClick={() => router.push("/blog")}
+                  classes="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/10"
+                >
+                  Blog
+                </Button>
+              )}
+              {showResume && (
+                <Button
+                  onClick={() => router.push("/resume")}
+                  classes="rounded-md bg-cyan-500 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-950 transition hover:bg-cyan-400"
+                >
+                  Resume
+                </Button>
+              )}
 
-            <button
-              onClick={() => window.open("mailto:hello@chetanverma.com")}
-              className="ml-4 text-sm text-slate-100 hover:underline"
-            >
-              Contact
-            </button>
-
-            {mounted && theme && darkMode && (
               <Button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                onClick={() => window.open("mailto:hello@chetanverma.com")}
+                classes="ml-2 text-xs text-slate-100 hover:underline"
               >
-                <Image
-                  className="h-6"
-                  alt="Toggle theme"
-                  src={`/images/${theme === "dark" ? "moon.svg" : "sun.svg"}`}
-                  width={24}
-                  height={24}
-                />
+                Contact
               </Button>
-            )}
-          </div>
-        )}
+
+              {mounted && theme && darkMode && (
+                <Button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                >
+                  <Image
+                    className="h-6"
+                    alt="Toggle theme"
+                    src={`/images/${theme === "dark" ? "moon.svg" : "sun.svg"}`}
+                    width={24}
+                    height={24}
+                  />
+                </Button>
+              )}
+            </div>
+          )}
       </div>
     </>
   );
