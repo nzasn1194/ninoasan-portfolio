@@ -135,13 +135,13 @@ const Home = () => {
 
             <section id="about" className="rounded-[2rem] border border-white/10 bg-[#050914] p-10 shadow-[0_25px_75px_rgba(8,16,38,0.45)]">
               <div className="grid gap-10 laptop:grid-cols-[1.5fr_1fr] items-center">
-                <div className="text-center">
+                <div className="text-center laptop:text-left">
                   <h2 className="mt-3 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-sky-400">ABOUT ME</h2>
-                  <p className="mt-6 text-lg leading-8 text-slate-300 text-justify">{data.aboutpara}</p>
+                  <p className="mt-6 text-lg leading-8 text-slate-300">{data.aboutpara}</p>
                 </div>
-                <div className="relative mx-auto flex max-w-sm items-center justify-center rounded-[2rem] border border-white/10 bg-[#081122] p-6">
+                <div className="relative mx-auto flex items-center justify-center rounded-[2rem] border border-white/10 bg-[#081122] p-6">
                   {hasAboutImage ? (
-                    <div className="relative h-80 w-80 rounded-full overflow-hidden border-2 border-cyan-500/60 shadow-[0_0_80px_rgba(34,211,238,0.3)] transition-all duration-500 hover:shadow-[0_0_120px_rgba(34,211,238,0.5)] animate-pulse">
+                    <div className="relative h-56 w-56 sm:h-64 sm:w-64 md:h-80 md:w-80 rounded-full overflow-hidden border-2 border-cyan-500/60 shadow-[0_0_80px_rgba(34,211,238,0.3)] transition-all duration-500 hover:shadow-[0_0_120px_rgba(34,211,238,0.5)]">
                       <Image
                         src={data.aboutPhoto}
                         alt="Uploaded profile"
@@ -151,7 +151,7 @@ const Home = () => {
                       />
                     </div>
                   ) : (
-                    <div className="flex h-80 w-80 items-center justify-center rounded-full border-2 border-cyan-500/60 border-dashed text-center text-slate-400 shadow-[0_0_80px_rgba(34,211,238,0.3)]">
+                    <div className="flex h-56 w-56 sm:h-64 sm:w-64 md:h-80 md:w-80 items-center justify-center rounded-full border-2 border-cyan-500/60 border-dashed text-center text-slate-400 shadow-[0_0_80px_rgba(34,211,238,0.3)]">
                       Upload your photo under Edit Data.
                     </div>
                   )}

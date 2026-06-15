@@ -40,8 +40,8 @@ const Footer = ({}) => {
             <div className="mt-6">
               <p className="text-sm uppercase text-slate-400">Follow me</p>
               <div className="mt-4">
-                <Socials />
-              </div>
+                  <Socials buttonClass={"flex items-center justify-center w-12 h-12 rounded-full border border-white/30 bg-white/5 transition-all duration-300 hover:border-cyan-400/50 hover:bg-white/15 hover:shadow-lg hover:shadow-cyan-400/20"} />
+                </div>
             </div>
           </div>
         </div>

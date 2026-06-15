@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { usePortfolio } from "../../lib/usePortfolio";
 
-const Socials = ({ className }) => {
+const Socials = ({ className, buttonClass }) => {
   const { portfolio } = usePortfolio();
 
   const iconFor = (title) => {
@@ -22,10 +22,13 @@ const Socials = ({ className }) => {
             <button
               key={index}
               onClick={() => window.open(social.link)}
-              className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/15 transition-colors"
+              className={
+                buttonClass ||
+                "flex items-center justify-center w-12 h-12 rounded-full border border-white/30 bg-white/5 transition-all duration-300 hover:border-cyan-400/50 hover:bg-white/15 hover:shadow-lg hover:shadow-cyan-400/20"
+              }
               aria-label={social.title}
             >
-              <Image src={icon} alt={social.title} width={20} height={20} />
+              <Image className="w-5 h-5 filter invert" src={icon} alt={social.title} width={20} height={20} />
             </button>
           );
         }
@@ -33,8 +36,11 @@ const Socials = ({ className }) => {
         return (
           <button
             key={index}
-            onClick={() => window.open(social.link)}
-            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/15 transition-colors"
+              onClick={() => window.open(social.link)}
+              className={
+                buttonClass ||
+                "flex items-center justify-center w-12 h-12 rounded-full border border-white/30 bg-white/5 transition-all duration-300 hover:border-cyan-400/50 hover:bg-white/15 hover:shadow-lg hover:shadow-cyan-400/20"
+              }
             aria-label={social.title}
           >
             <svg
