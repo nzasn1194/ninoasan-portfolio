@@ -70,6 +70,7 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
                   <Button onClick={() => router.push("/edit")}>Edit Data</Button>
                   <Button
                     onClick={() => window.open("mailto:hello@chetanverma.com")}
+                    classes="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition hover:bg-white/10"
                   >
                     Contact
                   </Button>
@@ -142,7 +143,10 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
             >
               Edit Data
             </Button>
-            <Button onClick={() => window.open("mailto:hello@chetanverma.com")}>
+            <Button
+              onClick={() => window.open("mailto:hello@chetanverma.com")}
+              classes="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition hover:bg-white/10"
+            >
               Contact
             </Button>
           </div>
