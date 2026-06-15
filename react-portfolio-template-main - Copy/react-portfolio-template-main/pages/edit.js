@@ -14,6 +14,25 @@ const readFileAsDataUrl = (file) =>
     reader.readAsDataURL(file);
   });
 
+const uploadToCloudinary = async (file) => {
+  try {
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+    const preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+    if (!cloudName || !preset) return null;
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`;
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', preset);
+    const res = await fetch(url, { method: 'POST', body: fd });
+    if (!res.ok) throw new Error('Upload failed');
+    const data = await res.json();
+    return data.secure_url || data.url || null;
+  } catch (err) {
+    console.warn('Cloudinary upload error', err);
+    return null;
+  }
+};
+
 const EditPage = () => {
   const { portfolio, savePortfolio } = usePortfolio();
   const [formData, setFormData] = useState(portfolio);
@@ -98,10 +117,22 @@ const EditPage = () => {
     const files = Array.from(event.target.files || []).slice(0, 3);
     if (!files.length) return;
 
-    const dataUrls = await Promise.all(files.map(readFileAsDataUrl));
+    // Try Cloudinary upload first (if configured), otherwise fallback to data URLs
+    const cloudConfigured = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME && process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+
+    const results = await Promise.all(
+      files.map(async (file) => {
+        if (cloudConfigured) {
+          const url = await uploadToCloudinary(file);
+          if (url) return url;
+        }
+        return await readFileAsDataUrl(file);
+      })
+    );
+
     setFormData((prev) => {
       const list = [...(prev.projects || [])];
-      list[index] = { ...list[index], images: dataUrls };
+      list[index] = { ...list[index], images: results };
       const next = { ...prev, projects: list };
       savePortfolio(next);
       return next;
@@ -139,7 +170,15 @@ const EditPage = () => {
   const handleFileUpload = async (event, key, section, index) => {
     const file = event.target.files?.[0];
     if (!file) return;
-    const dataUrl = await readFileAsDataUrl(file);
+
+    const cloudConfigured = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME && process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+
+    let savedUrl = null;
+    if (cloudConfigured) {
+      savedUrl = await uploadToCloudinary(file);
+    }
+
+    const dataUrl = savedUrl || (await readFileAsDataUrl(file));
 
     if (section) {
       updateNested(section, index, key, dataUrl);

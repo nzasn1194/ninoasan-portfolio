@@ -64,23 +64,6 @@ export function usePortfolio() {
     setPortfolio(normalized);
     if (typeof window !== "undefined") {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
-      // Try to persist remotely via Netlify function (optional).
-      // This requires a Netlify function `save-portfolio` to be deployed
-      // and a GitHub token configured in Netlify environment variables.
-      try {
-        fetch("/.netlify/functions/save-portfolio", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ portfolio: normalized }),
-        }).then((res) => {
-          if (!res.ok) console.warn("Remote save failed", res.status);
-        }).catch((err) => {
-          // Silently ignore remote save failures (keeps local save intact)
-          console.warn("Remote save error", err);
-        });
-      } catch (err) {
-        console.warn("Remote save not available", err);
-      }
     }
   };
 
