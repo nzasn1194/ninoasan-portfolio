@@ -64,6 +64,27 @@ export function usePortfolio() {
     setPortfolio(normalized);
     if (typeof window !== "undefined") {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
+      // Attempt to persist to Netlify function which will commit to GitHub.
+      // The function will reject payloads that include data-URI images.
+      try {
+        fetch("/.netlify/functions/save-portfolio", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ portfolio: normalized }),
+        })
+          .then((res) => {
+            if (!res.ok) return res.text().then((t) => Promise.reject(t));
+            return res.json();
+          })
+          .then(() => {
+            console.log("Portfolio persisted remotely");
+          })
+          .catch((err) => {
+            console.warn("Remote save failed", err);
+          });
+      } catch (err) {
+        console.warn("Remote save not available", err);
+      }
     }
   };
 
