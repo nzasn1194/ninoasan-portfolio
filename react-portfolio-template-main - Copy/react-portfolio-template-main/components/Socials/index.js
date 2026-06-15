@@ -9,6 +9,7 @@ const Socials = ({ className }) => {
     if (t.includes("github")) return "/images/github.svg";
     if (t.includes("linkedin")) return "/images/linkedin.svg";
     if (t.includes("email")) return "/images/email.svg";
+    if (t.includes("twitter")) return "/images/twitter.svg";
     return null;
   };
 
@@ -21,10 +22,10 @@ const Socials = ({ className }) => {
             <button
               key={index}
               onClick={() => window.open(social.link)}
-              className="w-9 h-9 rounded-full bg-white/6 flex items-center justify-center hover:bg-white/10"
+              className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/15 transition-colors"
               aria-label={social.title}
             >
-              <Image src={icon} alt={social.title} width={18} height={18} />
+              <Image src={icon} alt={social.title} width={20} height={20} />
             </button>
           );
         }
@@ -33,11 +34,11 @@ const Socials = ({ className }) => {
           <button
             key={index}
             onClick={() => window.open(social.link)}
-            className="w-9 h-9 rounded-full bg-white/6 flex items-center justify-center hover:bg-white/10"
+            className="w-10 h-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center hover:bg-white/15 transition-colors"
             aria-label={social.title}
           >
             <svg
-              className="h-4 w-4 text-slate-100"
+              className="h-5 w-5 text-white"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
