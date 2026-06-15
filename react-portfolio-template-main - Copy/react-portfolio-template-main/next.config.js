@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    // Allow common external image hosts used in the portfolio (Unsplash, Pexels)
+    unoptimized: true,
     domains: ["images.unsplash.com", "images.pexels.com"],
     remotePatterns: [
       {
