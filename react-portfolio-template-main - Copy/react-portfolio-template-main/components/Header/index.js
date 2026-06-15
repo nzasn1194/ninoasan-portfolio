@@ -143,12 +143,12 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
             >
               Edit Data
             </Button>
-            <Button
+            <button
               onClick={() => window.open("mailto:hello@chetanverma.com")}
-              classes="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition hover:bg-white/10"
+              className="ml-4 text-sm text-slate-100 hover:underline"
             >
               Contact
-            </Button>
+            </button>
           </div>
         ) : (
           <div className="flex flex-wrap items-center gap-3">
@@ -175,12 +175,12 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
               </Button>
             )}
 
-            <Button
+            <button
               onClick={() => window.open("mailto:hello@chetanverma.com")}
-              classes="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition hover:bg-white/10"
+              className="ml-4 text-sm text-slate-100 hover:underline"
             >
               Contact
-            </Button>
+            </button>
 
             {mounted && theme && darkMode && (
               <Button
