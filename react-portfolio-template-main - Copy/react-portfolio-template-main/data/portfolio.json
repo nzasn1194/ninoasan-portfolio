@@ -16,7 +16,7 @@
     {
       "id": "1",
       "title": "Github",
-      "link": "https://github.com/nzasn1194"
+      "link": "https://github.com/ninoasan"
     },
     {
       "id": "2",
@@ -138,6 +138,7 @@
     },
     "languages": ["Javascript", "HTML5", "CSS", "Python"],
     "frameworks": ["React", "Typescript", "NodeJs"],
-    "others": ["Figma", "AdobeXD", "AWS"]
+    "others": ["Figma", "AdobeXD", "AWS"],
+    "expertise": ["UI/UX Design", "Front-end Development", "React", "TypeScript", "Figma"]
   }
 }

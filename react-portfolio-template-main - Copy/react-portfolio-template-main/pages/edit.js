@@ -48,6 +48,52 @@ const EditPage = () => {
     });
   };
 
+  const updateResumeExpertiseItem = (index, value) => {
+    setFormData((prev) => {
+      const expertise = [...((prev.resume?.expertise) || [])];
+      expertise[index] = value;
+      const next = {
+        ...prev,
+        resume: {
+          ...prev.resume,
+          expertise,
+        },
+      };
+      savePortfolio(next);
+      return next;
+    });
+  };
+
+  const addResumeExpertise = () => {
+    setFormData((prev) => {
+      const expertise = [...((prev.resume?.expertise) || []), ""];
+      const next = {
+        ...prev,
+        resume: {
+          ...prev.resume,
+          expertise,
+        },
+      };
+      savePortfolio(next);
+      return next;
+    });
+  };
+
+  const removeResumeExpertise = (index) => {
+    setFormData((prev) => {
+      const expertise = [...((prev.resume?.expertise) || [])].filter((_, i) => i !== index);
+      const next = {
+        ...prev,
+        resume: {
+          ...prev.resume,
+          expertise,
+        },
+      };
+      savePortfolio(next);
+      return next;
+    });
+  };
+
   const handleProjectImagesUpload = async (event, index) => {
     const files = Array.from(event.target.files || []).slice(0, 3);
     if (!files.length) return;
@@ -323,6 +369,40 @@ const EditPage = () => {
                 <p className="mt-4 text-sm text-slate-400">
                   {formData.resumePdfName ? `Uploaded file: ${formData.resumePdfName}` : "Upload a PDF to enable the homepage VIEW RESUME button."}
                 </p>
+              </div>
+            </section>
+
+            <section className="rounded-[2rem] border border-white/10 bg-[#050914] p-10 shadow-[0_25px_75px_rgba(8,16,38,0.45)]">
+              <div className="mb-8 flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.4em] text-red-400/80">Resume</p>
+                  <h2 className="mt-3 text-3xl font-semibold text-white">Expertise tags</h2>
+                </div>
+                <Button type="primary" onClick={addResumeExpertise}>Add Expertise</Button>
+              </div>
+              <div className="space-y-4">
+                {formData.resume?.expertise?.map((skill, index) => (
+                  <div key={`${skill}-${index}`} className="grid gap-4 laptop:grid-cols-[1fr_auto] items-end rounded-3xl border border-white/10 bg-[#081122] p-6">
+                    <div>
+                      <label className="block text-sm font-semibold text-slate-200">Expertise #{index + 1}</label>
+                      <input
+                        value={skill}
+                        onChange={(e) => updateResumeExpertiseItem(index, e.target.value)}
+                        className="mt-2 w-full rounded-3xl border border-white/10 bg-[#020617] p-4 text-white outline-none"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeResumeExpertise(index)}
+                      className="rounded-full border border-red-500 px-4 py-3 text-sm text-red-400"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+                {!formData.resume?.expertise?.length && (
+                  <p className="text-sm text-slate-400">Add expertise tags to show them on the Experience and Skills section.</p>
+                )}
               </div>
             </section>
 

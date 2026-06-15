@@ -36,8 +36,7 @@ const normalizePortfolio = (raw) => {
       experiences: ensureArray(resume.experiences, defaultData.resume.experiences),
       languages: ensureArray(resume.languages, defaultData.resume.languages),
       frameworks: ensureArray(resume.frameworks, defaultData.resume.frameworks),
-      others: ensureArray(resume.others, defaultData.resume.others),
-    },
+      others: ensureArray(resume.others, defaultData.resume.others),      expertise: ensureArray(resume.expertise, defaultData.resume.expertise),    },
   };
 };
 

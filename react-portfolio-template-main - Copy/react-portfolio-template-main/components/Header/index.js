@@ -55,48 +55,70 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
               className={`absolute right-2 left-2 z-20 w-auto p-4 bg-[#020617]/85 border border-white/10 shadow-xl backdrop-blur-xl rounded-3xl`}
             >
               {!isBlog ? (
-                <div className="grid grid-cols-1">
-                  <Button onClick={handleWorkScroll}>Project</Button>
-                  <Button onClick={handleAboutScroll}>About</Button>
+                <div className="grid grid-cols-1 gap-3">
+                  <button
+                    onClick={handleWorkScroll}
+                    className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition duration-300 hover:bg-white/10 hover:text-white"
+                  >
+                    Projects
+                  </button>
+                  <button
+                    onClick={handleAboutScroll}
+                    className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition duration-300 hover:bg-white/10 hover:text-white"
+                  >
+                    About
+                  </button>
                   {showResume && (
-                    <Button
-                      onClick={() =>
-                        window.open("mailto:hello@chetanverma.com")
-                      }
+                    <button
+                      onClick={() => router.push("/resume")}
+                      className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition duration-300 hover:bg-white/10 hover:text-white"
                     >
                       Resume
-                    </Button>
+                    </button>
                   )}
-                  <Button onClick={() => router.push("/edit")}>Edit Data</Button>
-                  <Button
+                  <button
+                    onClick={() => router.push("/edit")}
+                    className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition duration-300 hover:bg-white/10 hover:text-white"
+                  >
+                    Edit Data
+                  </button>
+                  <button
                     onClick={() => window.open("mailto:hello@chetanverma.com")}
-                    classes="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition hover:bg-white/10"
+                    className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition duration-300 hover:bg-white/10 hover:text-white"
                   >
                     Contact
-                  </Button>
+                  </button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1">
-                  <Button onClick={() => router.push("/")} classes="first:ml-1">
+                <div className="grid grid-cols-1 gap-3">
+                  <button
+                    onClick={() => router.push("/")}
+                    className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition duration-300 hover:bg-white/10 hover:text-white"
+                  >
                     Home
-                  </Button>
+                  </button>
                   {showBlog && (
-                    <Button onClick={() => router.push("/blog")}>Blog</Button>
+                    <button
+                      onClick={() => router.push("/blog")}
+                      className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition duration-300 hover:bg-white/10 hover:text-white"
+                    >
+                      Blog
+                    </button>
                   )}
                   {showResume && (
-                    <Button
+                    <button
                       onClick={() => router.push("/resume")}
-                      classes="rounded-full bg-cyan-500 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-950 transition hover:bg-cyan-400"
+                      className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition duration-300 hover:bg-white/10 hover:text-white"
                     >
                       Resume
-                    </Button>
+                    </button>
                   )}
-
-                  <Button
+                  <button
                     onClick={() => window.open("mailto:hello@chetanverma.com")}
+                    className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-slate-100 transition duration-300 hover:bg-white/10 hover:text-white"
                   >
                     Contact
-                  </Button>
+                  </button>
                 </div>
               )}
             </Popover.Panel>
@@ -115,72 +137,82 @@ const Header = ({ handleWorkScroll, handleAboutScroll, isBlog }) => {
           <span className="bg-gradient-to-r from-pink-500 to-sky-500 bg-clip-text text-transparent">{name}</span>.
         </h1>
         {!isBlog ? (
-            <div className="flex flex-wrap items-center gap-2">
-              <Button
+            <div className="flex items-center gap-8">
+              <button
                 onClick={handleWorkScroll}
-                classes="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/10"
+                className="relative group text-sm uppercase tracking-[0.3em] text-slate-100 transition duration-300 hover:text-white"
               >
-                Project
-              </Button>
-              <Button
+                Projects
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+              </button>
+              <button
                 onClick={handleAboutScroll}
-                classes="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/10"
+                className="relative group text-sm uppercase tracking-[0.3em] text-slate-100 transition duration-300 hover:text-white"
               >
                 About
-              </Button>
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+              </button>
               {showResume && (
-                <Button
+                <button
                   onClick={() => router.push("/resume")}
-                  classes="rounded-md bg-cyan-500 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-950 transition hover:bg-cyan-400"
+                  className="relative group text-sm uppercase tracking-[0.3em] text-slate-100 transition duration-300 hover:text-white"
                 >
                   Resume
-                </Button>
+                  <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+                </button>
               )}
 
-              <Button
+              <button
                 onClick={() => router.push("/edit")}
-                classes="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/10"
+                className="relative group text-sm uppercase tracking-[0.3em] text-slate-100 transition duration-300 hover:text-white"
               >
                 Edit Data
-              </Button>
-              <Button
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+              </button>
+
+              <button
                 onClick={() => window.open("mailto:hello@chetanverma.com")}
-                classes="ml-2 text-xs text-slate-100 hover:underline"
+                className="relative group text-sm uppercase tracking-[0.3em] text-slate-100 transition duration-300 hover:text-white"
               >
                 Contact
-              </Button>
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+              </button>
             </div>
           ) : (
-            <div className="flex flex-wrap items-center gap-2">
-              <Button
+            <div className="flex items-center gap-8">
+              <button
                 onClick={() => router.push("/")}
-                classes="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/10"
+                className="relative group text-sm uppercase tracking-[0.3em] text-slate-100 transition duration-300 hover:text-white"
               >
                 Home
-              </Button>
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+              </button>
               {showBlog && (
-                <Button
+                <button
                   onClick={() => router.push("/blog")}
-                  classes="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-100 transition hover:bg-white/10"
+                  className="relative group text-sm uppercase tracking-[0.3em] text-slate-100 transition duration-300 hover:text-white"
                 >
                   Blog
-                </Button>
+                  <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+                </button>
               )}
               {showResume && (
-                <Button
+                <button
                   onClick={() => router.push("/resume")}
-                  classes="rounded-md bg-cyan-500 px-3 py-2 text-xs uppercase tracking-[0.18em] text-slate-950 transition hover:bg-cyan-400"
+                  className="relative group text-sm uppercase tracking-[0.3em] text-slate-100 transition duration-300 hover:text-white"
                 >
                   Resume
-                </Button>
+                  <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+                </button>
               )}
 
-              <Button
+              <button
                 onClick={() => window.open("mailto:hello@chetanverma.com")}
-                classes="ml-2 text-xs text-slate-100 hover:underline"
+                className="relative group text-sm uppercase tracking-[0.3em] text-slate-100 transition duration-300 hover:text-white"
               >
                 Contact
-              </Button>
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all duration-300 group-hover:w-full" />
+              </button>
 
               {mounted && theme && darkMode && (
                 <Button
